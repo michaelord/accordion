@@ -1,27 +1,23 @@
-import * as React from 'react';
-
+import {getModifiers} from 'components/libs';
+import * as Types from 'components/types';
+import React from 'react';
 import './Accordion.scss';
 
-import {getModifiers} from 'components/libs';
-
-type AccordionProps = {
-	children: React.ReactNode;
-	title?: string;
+export type AccordionProps = {
+	isExpanded?: boolean;
+	id?: Types.ID;
+	children: Types.Children;
+	title?: Types.Text;
 };
 
 export const Accordion = (props: AccordionProps) => {
-	const {title, children} = props;
-
 	const base: string = 'accordion';
+
+	const {children} = props;
 
 	const atts: object = {
 		className: getModifiers(base, {}),
 	};
 
-	return (
-		<div {...atts}>
-			<header className={`${base}__header`}>{title}</header>
-			<div className={`${base}__body`}>{children}</div>
-		</div>
-	);
+	return <div {...atts}>{children}</div>;
 };
